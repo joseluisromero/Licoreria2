@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Categoria</title>
+</h:head>
+<h:body>
+	<b:container>
+			<b:growl/>
+			<h:form prependId="false" >
+			<b:panel rendered="true" id="PCategoria"  title="Registro Categoria" look="primary" collapsible="false" >
+			
+			
+				<b:inputText label="Nombre" value="#{categoriaController.categoria.catNombre}" required="true"  
+				 placeholder="Text" span="3" />
+
+				<b:inputText label="Descripción" value="#{categoriaController.categoria.catDescripcion}" 
+				placeholder="Text" span="3" />
+				
+				<b:commandButton action="#{categoriaController.guardar()}" span="2" value="Guardar" look="primary"  
+					tooltip="Guardar una Categoria!" icon-awesome="fa-save">
+				</b:commandButton>
+
+				<b:commandButton disabled="#{categoriaController.categoria.catId==null}" action="#{categoriaController.eliminar()}" value="Eliminar" 
+				span="2" icon-awesome="fa-remove" look="danger"  />
+				
+			</b:panel>
+			</h:form>
+			<br />
+			<h:form  prependId="false">
+			<b:panel title="Categorias" look="info" collapsible="false"  >
+			<b:dataTable var="cate" value="#{categoriaController.listarCategoria}" 	tooltip-position="center" caption="Tabla de Categoria"
+				border="true" page-length="5" responsive="true" fixedHeader="true" scroll-size="400px" page-length-menu="5,10,20">
+				
+				<b:dataTableColumn label="Nombre">
+					<h:outputText value="#{cate.catNombre}" />
+				</b:dataTableColumn>
+				
+				<b:dataTableColumn label="Descripción">
+					<h:outputText value="#{cate.catDescripcion}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Actualizar" >
+				<b:commandLink action="#{categoriaController.buscarId(cate)}" value="Actualizar"   icon="ui-icon-plus" look="Link"  >
+				</b:commandLink>
+				</b:dataTableColumn>
+				 <f:facet name="footer">
+   				 <b:commandButton action="#{categoriaController.buscarId(cate)}" value="Nuevo"   icon="ui-icon-plus" look="info"  >
+				</b:commandButton>
+  				</f:facet>
+				
+			</b:dataTable>
+			</b:panel>
+			</h:form>
+		
+	</b:container>
+</h:body>
+</html>

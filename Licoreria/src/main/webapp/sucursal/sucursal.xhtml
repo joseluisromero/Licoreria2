@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Sucursal</title>
+</h:head>
+<h:body>
+	<b:container>
+
+		<h:form prependId="false">
+			<b:growl></b:growl>
+			<h1>Sucursal</h1>
+			<b:panel rendered="true" id="idPanelS" title="Registro Sucursal"
+				look="primary">
+
+				<b:inputText label="Nombre"
+					value="#{sucursalController.sucursal.sucurNombre}" required="true" requiredMessage="Campo obligatorio"
+					placeholder="Text" span="3" />
+
+				<b:inputText label="Dirección" value="#{sucursalController.sucursal.sucurDireccion}" placeholder="Text" span="3"  required="true" />
+				<b:inputText label="Teléfono"  required="true"
+					value="#{sucursalController.sucursal.sucurTelefono}"
+					placeholder="Text" span="3" />
+				<b:inputText label="Ruc"  required="true"
+					value="#{sucursalController.sucursal.sucurRuc}" placeholder="Text"
+					span="3" />
+				<b:inputText label="Teléfono Local"  required="true"
+					value="#{sucursalController.sucursal.sucurTelefLocal}"
+					placeholder="Text" span="3" />
+				<b:commandButton action="#{sucursalController.guardar()}" span="2" update="panelLista idPanelS"
+					value="Guardar" look="primary" tooltip="Guardar una sucursal!"
+					icon-awesome="fa-save">
+				</b:commandButton>
+
+				<b:commandButton
+					disabled="#{sucursalController.sucursal.sucurId==null}" update="panelLista idPanelS"
+					action="#{sucursalController.eliminar()}" value="Eliminar" span="2"
+					icon-awesome="fa-remove" look="danger" />
+			</b:panel>
+			</h:form>
+			<b:panel id="panelLista" title="Lista de Sucursales">
+				<b:dataTable var="sucu" value="#{sucursalController.listarSucursal}"
+				tooltip-position="center" caption="Tabla de Sucursales"
+				border="true" page-length="5" responsive="true" fixedHeader="true"
+               scroll-size="400px"
+				page-length-menu="5,10,20">
+				<f:facet name="footer">
+					<b:commandButton value="nuevo" look="primary"></b:commandButton>
+				</f:facet>
+				<b:dataTableColumn label="Nombre">
+					<h:outputText value="#{sucu.sucurNombre}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Dirección">
+					<h:outputText value="#{sucu.sucurDireccion}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Teléfono">
+					<h:outputText value="#{sucu.sucurTelefono}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Ruc">
+					<h:outputText value="#{sucu.sucurRuc}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Teléfono Local">
+					<h:outputText value="#{sucu.sucurTelefLocal}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Actualizar">
+					<p:commandButton value="Editar"
+						action="#{sucursalController.buscar(sucu.sucurId)}"  ></p:commandButton>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:panel>
+		
+	</b:container>
+</h:body>
+</html>

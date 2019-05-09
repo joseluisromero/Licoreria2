@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Welcome</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h3>Primer JSF</h3>
+		<p:dataTable var="sucu" value="#{sucursalController.listarSucursal}"
+			border="2">
+			<p:column>
+				<h:outputText value="#{sucu.sucurNombre}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{sucu.sucurDireccion}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{sucu.sucurTelefono}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{sucu.sucurRuc}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{sucu.sucurTelefLocal}" />
+			</p:column>
+		</p:dataTable>
+		<h1>Bootsfaces</h1>
+		<b:container>
+			<b:dataTable var="sucu" value="#{sucursalController.listarSucursal}"
+				width="5em">
+				<b:dataTableColumn label="Nombre">
+					<h:outputText value="#{sucu.sucurNombre}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Dirección">
+					<h:outputText value="#{sucu.sucurDireccion}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Teléfono">
+					<h:outputText value="#{sucu.sucurTelefono}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Ruc">
+					<h:outputText value="#{sucu.sucurRuc}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Teléfono Local">
+					<h:outputText value="#{sucu.sucurTelefLocal}" />
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:container>
+	</h:form>
+</h:body>
+</html>
